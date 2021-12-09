@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-xs-12">
+      <form #ingredientForm="ngForm" (ngSubmit)="addItem(ingredientForm)">
+        <div class="row">
+          <div class="col-sm-5 form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" ngModel class="form-control" required #name="ngModel">
+            <span *ngIf="name.invalid && name.touched" class="help-block " > Name is Required</span>
+          </div>
+          <div class="col-sm-2 form-group">
+            <label for="amount">Amount</label>
+            <input type="number" name="amount" ngModel class="form-control" required #amount="ngModel" pattern="^[1-9]+[0-9]*$">
+            <span *ngIf="amount.invalid && amount.touched" class="help-block " > Valid amount is required</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 button-margin">
+            <button class="btn btn-success"  style="margin-right: 1%;"type="submit" [disabled]="ingredientForm.invalid" >{{editMode ?'Update': 'Add' }}</button>
+            <button class="btn btn-danger " style="margin-right: 1%;" type="button" (click)="onDeleteItem()" *ngIf="editMode">Delete</button>
+            <button class="btn btn-primary" style="margin-right: 1%;" type="button" (click)="onClear()">Clear</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
